@@ -9,7 +9,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { AppDispatch, RootState } from '@/app/redux/store'
 import JobDescriptionModal from '../JobDescription/JobDescriptionModal'
 
-interface Props {
+export interface PostsArray {
   companyName: string
   jdLink: string
   jdUid: string
@@ -23,15 +23,14 @@ interface Props {
   minJdSalary: number | null
   salaryCurrencyCode: string
 }
-const JobCard = ({ companyName, jdLink, jdUid, jobDetailsFromCompany, jobRole, location, logoUrl, maxExp, maxJdSalary, minExp, minJdSalary, salaryCurrencyCode }: Props) => {
+const JobCard = ({ companyName, jdLink, jdUid, jobDetailsFromCompany, jobRole, location, logoUrl, maxExp, maxJdSalary, minExp, minJdSalary, salaryCurrencyCode }: PostsArray) => {
   const { isOpen } = useSelector((state: RootState) => state.modal)
 
   const dispatch = useDispatch<AppDispatch>()
   const handleToggleModal = () => {
-    dispatch(toggleModal())
+    dispatch(toggleModal(jdUid))
   }
 
-  useEffect(() => { console.log(isOpen) }, [isOpen])
   const capitalizeFirstLetter = (string: string) => {
     return string.charAt(0).toUpperCase() + string.slice(1)
   }
@@ -39,7 +38,7 @@ const JobCard = ({ companyName, jdLink, jdUid, jobDetailsFromCompany, jobRole, l
   const newLocation = capitalizeFirstLetter(location)
   return (
     <>
-      <JobDescriptionModal jobDes={jobDetailsFromCompany} />
+      <JobDescriptionModal jobDes={jobDetailsFromCompany} jobRole={newJobRole} companyName={companyName} jobLocation={newLocation} id={jdUid} />
       <Card elevation={0} className='card-wrapper'>
         {/* card header */}
         <div className='card-top'>
@@ -71,7 +70,7 @@ const JobCard = ({ companyName, jdLink, jdUid, jobDetailsFromCompany, jobRole, l
             </p>
             {/* gradient mask */}
             <div className='gradient-mask'>
-              <p onClick={handleToggleModal}>View Jobs</p>
+              <p onClick={handleToggleModal}>Show more</p>
             </div>
           </div>
           {/* experience */}
