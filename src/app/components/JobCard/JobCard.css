@@ -6,7 +6,7 @@
     border-radius: 20px;
 }
 .card-wrapper:hover {
-    transition: all .2s ease-in-out;
+    transition: all 0.2s ease-in-out;
     transform: scale(1.01);
 }
 
@@ -46,7 +46,6 @@
 .logo {
     height: 30px;
     width: 30px;
-    background-color: rebeccapurple;
 }
 .company-name {
     color: #8b8b8b;
@@ -93,14 +92,13 @@
         rgba(255, 255, 255, 0.144)
     );
     position: absolute;
-    z-index: 100;
+    z-index: 20;
     left: 0;
     bottom: 0;
 }
 .gradient-mask > p {
     font-size: 14px;
     text-decoration: none;
-    color: #4943da;
     cursor: pointer;
     margin: 0 0 8px 0;
 }
