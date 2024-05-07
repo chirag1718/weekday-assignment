@@ -4,6 +4,7 @@ import { Grid, Box } from '@mui/material'
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import jobPostSlice, { setIsLoading, setPosts, setHasMorePosts } from '@/app/redux/features/jobPostSlice'
+import JobCard from '../JobCard/JobCard'
 
 const JobListing = () => {
      const dispatch = useDispatch()
@@ -14,7 +15,7 @@ const JobListing = () => {
      // fetch job posts
      const handleFetchJobPosts = async () => {
           const body = JSON.stringify({
-               "limit": 2,
+               "limit": 10,
                "offset": 0
           })
           // const myHeaders = new Headers()
@@ -49,19 +50,21 @@ const JobListing = () => {
 
 
      useEffect(() => {
-          // console.log(posts)
+          console.log(posts)
      }, [posts])
      return (
-          <Grid className='listing-wrapper'>
-               <Box>
+          <Box className='listing-wrapper'>
+               <Grid container spacing={8} marginBottom={10} direction="row" justifyContent={"center"} alignItems={"center"} className='listing-wrapper' sx={{ width: "100%", height: "100%" }}>
                     {posts.map((post, index) => {
                          console.log(index)
                          return (
-                              <div key={`${post.jdUid}_${index}`}></div>
+                              <Grid key={`${post.jdUid}_${index}`} item >
+                                   <JobCard {...post} />
+                              </Grid>
                          )
                     })}
-               </Box>
-          </Grid >
+               </Grid >
+          </Box>
      )
 }
 
