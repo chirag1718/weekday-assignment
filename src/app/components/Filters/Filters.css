@@ -1,0 +1,9 @@
+.filter-wrapper {
+    height: auto;
+    width: auto;
+    background-color: white;
+    margin: 0 0 50px 20px;
+    display: flex;
+    align-items: center;
+    
+}
