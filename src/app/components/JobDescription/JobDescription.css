@@ -1,0 +1,43 @@
+.modal-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.modal-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 500px;
+    width: 500px;
+    background: white !important;
+    outline: none;
+    border-radius: 20px;
+}
+
+.fade-enter {
+    opacity: 0;
+    animation: fadeIn 0.3s ease-in forwards;
+}
+
+.fade-exit {
+    opacity: 1;
+    animation: fadeOut 0.5s ease-in forwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
