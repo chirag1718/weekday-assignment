@@ -1,0 +1,170 @@
+.card-wrapper {
+    width: 360px;
+    height: 548px;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 1px 4px 0px !important;
+    padding: 5px;
+    border-radius: 20px;
+}
+.card-wrapper:hover {
+    transition: all .2s ease-in-out;
+    transform: scale(1.01);
+}
+
+.card-top {
+    display: flex;
+    gap: 5px;
+    padding: 5px 10px;
+}
+/* date time chip */
+.date-chip {
+    padding: 4px 6px !important;
+    border: 1px solid rgb(230, 230, 230);
+    box-shadow: rgba(6, 6, 6, 0.05) 0px 2px 6px 0px;
+}
+
+.css-rrn746-MuiChip-label {
+    font-size: 9px !important;
+    padding: 0px;
+}
+
+/* card content */
+.card-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.css-46bh2p-MuiCardContent-root:last-child {
+    padding: 8px 16px;
+}
+
+/* company details */
+.company-details {
+    display: flex;
+    flex-direction: row;
+    gap: 0.5rem;
+}
+.logo {
+    height: 30px;
+    width: 30px;
+    background-color: rebeccapurple;
+}
+.company-name {
+    color: #8b8b8b;
+    font-size: 13px;
+    margin: 0 0 3px 0;
+    font-weight: 400;
+}
+.company-role {
+    font-size: 14px;
+    margin: 0;
+}
+.company-location {
+    font-size: 11px;
+    margin: 5px 0 0 0;
+}
+.salary {
+    margin: 8px 0px;
+    font-size: 14px;
+}
+
+/* about company */
+.about-company {
+    overflow-y: hidden;
+    position: relative;
+    height: 240px;
+}
+.about-company:first-child {
+    font-size: 16px;
+    font-weight: 500;
+}
+.about-company > strong {
+    font-size: 14px;
+}
+/* gradient mask */
+.gradient-mask {
+    display: flex;
+    justify-content: center;
+    align-items: end;
+    height: 200px;
+    width: 100%;
+    background: linear-gradient(
+        to top,
+        rgb(255, 255, 255),
+        rgba(255, 255, 255, 0.144)
+    );
+    position: absolute;
+    z-index: 100;
+    left: 0;
+    bottom: 0;
+}
+.gradient-mask > p {
+    font-size: 14px;
+    text-decoration: none;
+    color: #4943da;
+    cursor: pointer;
+    margin: 0 0 8px 0;
+}
+
+/* experience */
+.experience > h3 {
+    font-size: 13px;
+    margin: 10px 0 3px 0;
+    font-weight: 400;
+    color: #8b8b8b;
+}
+.experience > h2 {
+    font-size: 14px;
+    font-weight: 400;
+    margin: 0;
+    color: #8b8b8b;
+}
+
+/* cta-buttons */
+.cta-buttons {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    margin: 7px 0px;
+}
+
+.easy-apply {
+    width: 100%;
+    height: 45px;
+    background-color: rgb(85, 239, 196);
+    font-size: 16px;
+    font-weight: 500;
+    padding: 8px 18px;
+    margin: 5px 0px;
+    color: black;
+    text-transform: initial;
+}
+.easy-apply:hover {
+    background-color: rgb(85, 239, 196);
+}
+
+.unlock-referral {
+    display: flex;
+    gap: 0.8rem;
+    width: 100%;
+    height: 45px;
+    background-color: rgb(85, 239, 196);
+    font-size: 16px;
+    font-weight: 500;
+    padding: 8px 18px;
+    margin: 5px 0px;
+    color: black;
+    text-transform: initial;
+    background-color: #4943da;
+    color: white;
+}
+.unlock-referral:hover {
+    background-color: #4943da;
+}
+
+.avatar {
+    height: 25px;
+    width: 25px;
+    font-size: small;
+    background-color: orangered;
+}
