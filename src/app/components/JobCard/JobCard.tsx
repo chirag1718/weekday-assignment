@@ -7,7 +7,23 @@ import Image from 'next/image'
 import { toggleModal } from '@/app/redux/features/modalSlice'
 import { useDispatch, useSelector } from 'react-redux'
 import { AppDispatch, RootState } from '@/app/redux/store'
-const JobCard = () => {
+import JobDescriptionModal from '../JobDescription/JobDescriptionModal'
+
+interface Props {
+  companyName: string
+  jdLink: string
+  jdUid: string
+  jobDetailsFromCompany: string
+  jobRole: string
+  location: string
+  logoUrl: string
+  maxExp: number | null
+  minExp: number | null
+  maxJdSalary: number | null
+  minJdSalary: number | null
+  salaryCurrencyCode: string
+}
+const JobCard = ({ companyName, jdLink, jdUid, jobDetailsFromCompany, jobRole, location, logoUrl, maxExp, maxJdSalary, minExp, minJdSalary, salaryCurrencyCode }: Props) => {
   const { isOpen } = useSelector((state: RootState) => state.modal)
 
   const dispatch = useDispatch<AppDispatch>()
@@ -16,8 +32,14 @@ const JobCard = () => {
   }
 
   useEffect(() => { console.log(isOpen) }, [isOpen])
+  const capitalizeFirstLetter = (string: string) => {
+    return string.charAt(0).toUpperCase() + string.slice(1)
+  }
+  const newJobRole = capitalizeFirstLetter(jobRole)
+  const newLocation = capitalizeFirstLetter(location)
   return (
-    <div style={{ display: "flex", alignItems: "center", justifyContent: "center", height: "100%", width: "100%" }}>
+    <>
+      <JobDescriptionModal jobDes={jobDetailsFromCompany} />
       <Card elevation={0} className='card-wrapper'>
         {/* card header */}
         <div className='card-top'>
@@ -27,22 +49,25 @@ const JobCard = () => {
         <CardContent className="card-content">
           {/* company details */}
           <div className='company-details'>
-            {/* <Image src={"#"} alt={`-${"logo"}`} height={25} width={25} /> */}
-            <div className='logo' />
+            <Image src={logoUrl} alt={`-${"logo"}`} height={25} width={25} className='logo' />
             {/* company details */}
             <div>
-              <h3 className='company-name'>Firefly</h3>
-              <h2 className='company-role'>Frotend engineer</h2>
-              <p className='company-location'>India</p>
+              <h3 className='company-name'>{companyName}</h3>
+              <h2 className='company-role'>{newJobRole}</h2>
+              <p className='company-location'>{newLocation}</p>
             </div>
           </div>
           {/* salary estimation */}
-          <p className='salary'>Estimated Salary: ₹30 - 50 LPA ✅</p>
+          {minJdSalary !== null ? (
+            <p className='salary'>Estimated Salary: ₹{minJdSalary} - {maxJdSalary !== null ? maxJdSalary : "N/A"} LPA ✅</p>
+          ) : (
+            <p className='salary'>Estimated Salary: ₹{maxJdSalary} LPA ✅</p>
+          )}
+
           <div className='about-company'>
             <p>About Company</p>
             <strong>About us</strong>
-            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laborum, velit recusandae, provident veritatis, animi vero voluptatum commodi libero esse alias explicabo tempore id doloribus iusto quaerat facere in. Tempora, fugiat!
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laborum, velit recusandae, provident veritatis, animi vero voluptatum commodi libero esse alias explicabo tempore id doloribus iusto quaerat facere in. Tempora, fugiat!
+            <p>{jobDetailsFromCompany}
             </p>
             {/* gradient mask */}
             <div className='gradient-mask'>
@@ -52,19 +77,19 @@ const JobCard = () => {
           {/* experience */}
           <div className='experience'>
             <h3>Minimum Experience</h3>
-            <h2>4 years</h2>
+            <h2>{minExp !== null ? `${minExp} years` : <u>Not mentioned</u>}</h2>
           </div>
           {/* CTA Buttons */}
           <div className='cta-buttons'>
-            <Button size='large' variant='contained' disableElevation disableRipple className='easy-apply' >⚡Easy Apply</Button>
-            <Button size='medium' variant='contained' disableElevation disableRipple className='unlock-referral' >
+            <Button LinkComponent={'a'} href={jdLink} size='large' variant='contained' disableElevation disableRipple className='easy-apply'>⚡Easy Apply</Button>
+            <Button LinkComponent={'a'} href={jdLink} size='medium' variant='contained' disableElevation disableRipple className='unlock-referral' >
               <Avatar className='avatar'>A</Avatar>
               <Avatar className='avatar'>B</Avatar>
               Unlock referral asks</Button>
           </div>
         </CardContent>
       </Card>
-    </div>
+    </>
   )
 
 }
