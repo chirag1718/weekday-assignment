@@ -1,19 +1,35 @@
 'use client'
 import { toggleModal } from '@/app/redux/features/modalSlice'
-import { Box } from '@mui/material'
+import { AppDispatch, RootState } from '@/app/redux/store'
+import { Box, Fade } from '@mui/material'
 import Modal from '@mui/material/Modal'
 import React from 'react'
-
+import { useDispatch, useSelector } from 'react-redux'
+import "./JobDescription.css"
 const JobDescriptionModal = () => {
+  const { isOpen } = useSelector((state: RootState) => state.modal)
+
+  const dispatch = useDispatch<AppDispatch>()
+  const handleToggleModal = () => {
+    dispatch(toggleModal())
+  }
   return (
-    <div>
-      {/* <Modal
-        // open={isOpen}
-        // onClose={handleToggleModal}
-      >
-        <Box>asdas</Box>
-      </Modal> */}
-    </div>
+    <React.Fragment>
+      {isOpen &&
+        <Modal
+
+          className="modal-wrapper"
+          open={isOpen}
+          onClose={handleToggleModal}
+        >
+          <Fade in={isOpen}>
+            <Box className='modal-container'>
+              
+            </Box>
+          </Fade>
+        </Modal>
+      }
+    </React.Fragment>
   )
 }
 
