@@ -6,7 +6,7 @@ import Modal from '@mui/material/Modal'
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import "./JobDescription.css"
-const JobDescriptionModal = () => {
+const JobDescriptionModal = ({ jobDes }: { jobDes: string }) => {
   const { isOpen } = useSelector((state: RootState) => state.modal)
 
   const dispatch = useDispatch<AppDispatch>()
@@ -24,7 +24,7 @@ const JobDescriptionModal = () => {
         >
           <Fade in={isOpen}>
             <Box className='modal-container'>
-              
+              {jobDes}
             </Box>
           </Fade>
         </Modal>
