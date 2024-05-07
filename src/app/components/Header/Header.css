@@ -1,0 +1,15 @@
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    gap: 10px;
+    height: 40px;
+    width: auto;
+    padding: 8px;
+    border-bottom: 2px solid rgb(230, 230, 230);
+}
+
+.link{
+     text-decoration: underline;
+     color: #4943da
+}
