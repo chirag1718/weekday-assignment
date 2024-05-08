@@ -95,6 +95,7 @@
     z-index: 20;
     left: 0;
     bottom: 0;
+    color: #4943da
 }
 .gradient-mask > p {
     font-size: 14px;
