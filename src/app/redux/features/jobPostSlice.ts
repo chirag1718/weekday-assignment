@@ -4,11 +4,15 @@ interface JobPostState {
     posts: any[];
     isLoading: boolean;
     hasMorePosts: boolean;
+    limit: number;
+    offset: number;
 }
 const initialState: JobPostState = {
     posts: [],
     isLoading: false,
     hasMorePosts: false,
+    limit: 10,
+    offset: 0,
 };
 
 const jobPostSlice = createSlice({
@@ -30,8 +34,12 @@ const jobPostSlice = createSlice({
         setHasMorePosts(state, action) {
             state.hasMorePosts = action.payload;
         },
+        setOffset(state, action) {
+            state.offset = action.payload;
+        },
     },
 });
 
-export const { setPosts, setIsLoading, setHasMorePosts } = jobPostSlice.actions;
+export const { setPosts, setIsLoading, setHasMorePosts, setOffset } =
+    jobPostSlice.actions;
 export default jobPostSlice.reducer;
