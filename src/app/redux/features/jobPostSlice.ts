@@ -1,12 +1,6 @@
-import { PayloadAction, createSlice } from "@reduxjs/toolkit";
+import { JobPostState } from "@/app/types/types";
+import { createSlice } from "@reduxjs/toolkit";
 
-interface JobPostState {
-    posts: any[];
-    isLoading: boolean;
-    hasMorePosts: boolean;
-    limit: number;
-    offset: number;
-}
 const initialState: JobPostState = {
     posts: [],
     isLoading: false,

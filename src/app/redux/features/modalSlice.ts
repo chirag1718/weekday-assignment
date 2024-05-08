@@ -1,10 +1,5 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-
-interface ModalState {
-    isOpen: boolean;
-    jobId: string | null;
-}
-
+import { ModalState } from "@/app/types/types";
+import { createSlice } from "@reduxjs/toolkit";
 const initialState: ModalState = {
     isOpen: false,
     jobId: null,

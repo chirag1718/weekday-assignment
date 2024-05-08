@@ -1,13 +1,7 @@
+import { FilterState } from "@/app/types/types";
 import { createSlice } from "@reduxjs/toolkit";
 
-interface FilterState {
-    role: string;
-    location: string;
-    minExperience: string;
-    companyName: string;
-    jobType: string;
-    minBasePay: string;
-}
+
 
 const initialState: FilterState = {
     role: "",
