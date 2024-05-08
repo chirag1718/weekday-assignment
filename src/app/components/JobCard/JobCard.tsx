@@ -8,21 +8,9 @@ import { toggleModal } from '@/app/redux/features/modalSlice'
 import { useDispatch, useSelector } from 'react-redux'
 import { AppDispatch, RootState } from '@/app/redux/store'
 import JobDescriptionModal from '../JobDescription/JobDescriptionModal'
+import { PostsArray } from '@/app/types/types'
 
-export interface PostsArray {
-  companyName: string
-  jdLink: string
-  jdUid: string
-  jobDetailsFromCompany: string
-  jobRole: string
-  location: string
-  logoUrl: string
-  maxExp: number | null
-  minExp: number | null
-  maxJdSalary: number | null
-  minJdSalary: number | null
-  salaryCurrencyCode: string
-}
+
 const JobCard = ({ companyName, jdLink, jdUid, jobDetailsFromCompany, jobRole, location, logoUrl, maxExp, maxJdSalary, minExp, minJdSalary, salaryCurrencyCode }: PostsArray, { lastCardRef }: any) => {
   const { isOpen } = useSelector((state: RootState) => state.modal)
 
