@@ -23,7 +23,7 @@ export interface PostsArray {
   minJdSalary: number | null
   salaryCurrencyCode: string
 }
-const JobCard = ({ companyName, jdLink, jdUid, jobDetailsFromCompany, jobRole, location, logoUrl, maxExp, maxJdSalary, minExp, minJdSalary, salaryCurrencyCode }: PostsArray) => {
+const JobCard = ({ companyName, jdLink, jdUid, jobDetailsFromCompany, jobRole, location, logoUrl, maxExp, maxJdSalary, minExp, minJdSalary, salaryCurrencyCode }: PostsArray, { lastCardRef }: any) => {
   const { isOpen } = useSelector((state: RootState) => state.modal)
 
   const dispatch = useDispatch<AppDispatch>()
@@ -39,7 +39,7 @@ const JobCard = ({ companyName, jdLink, jdUid, jobDetailsFromCompany, jobRole, l
   return (
     <>
       <JobDescriptionModal jobDes={jobDetailsFromCompany} jobRole={newJobRole} companyName={companyName} jobLocation={newLocation} id={jdUid} />
-      <Card elevation={0} className='card-wrapper'>
+      <Card elevation={0} className='card-wrapper' ref={lastCardRef}>
         {/* card header */}
         <div className='card-top'>
           <Chip variant='outlined' label="⌛Posted 5 days ago" size='small' className='date-chip' />
