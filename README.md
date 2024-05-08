@@ -1,3 +1,22 @@
+# Welcome to the Weekday Assignment project!
+
+## Live Link
+You can access the live version of the project here.
+https://weekday-assignment-dun.vercel.app/
+
+## Instructions
+To run this project locally, follow these steps:
+
+Install Dependencies: Run the following command to install all the required dependencies:
+`npm install`
+
+Start the Project: Execute the following command to start the project:
+`npm run dev`
+
+This will start the project locally, and you can access it in your web browser at http://localhost:3000.
+
+Feel free to explore the project and its functionalities! If you have any questions or need assistance, don't hesitate to reach out at chirag17.dev@gmail.com . Happy coding! 🚀
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
