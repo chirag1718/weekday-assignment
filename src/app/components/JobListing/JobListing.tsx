@@ -1,27 +1,28 @@
 'use client'
 import { RootState } from '@/app/redux/store'
 import { Grid, Box } from '@mui/material'
-import React, { useEffect } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { setIsLoading, setPosts, setHasMorePosts } from '@/app/redux/features/jobPostSlice'
+import { setIsLoading, setPosts, setHasMorePosts, setOffset } from '@/app/redux/features/jobPostSlice'
 import JobCard, { PostsArray } from '../JobCard/JobCard'
 import Filters from '../Filters/Filters'
-
+import { useInView } from 'react-intersection-observer'
+import "./JobListing.css"
 const JobListing = () => {
      const dispatch = useDispatch()
-     const { posts, isLoading, hasMorePosts } = useSelector((state: RootState) => state.jobPosts)
+     const { posts, isLoading, hasMorePosts, limit, offset } = useSelector((state: RootState) => state.jobPosts)
      const { companyName, jobType, location, minBasePay, minExperience, role } = useSelector((state: RootState) => state.filters)
+     const { ref, inView } = useInView()
+
      useEffect(() => {
           handleFetchJobPosts()
-     }, [])
+     }, [inView])
      // fetch job posts
      const handleFetchJobPosts = async () => {
           const body = JSON.stringify({
-               "limit": 10,
-               "offset": 0
+               "limit": limit,
+               "offset": offset
           })
-          // const myHeaders = new Headers()
-          // myHeaders.append("Content-Type", "application/json")
 
           const requestOptions = {
                method: "POST",
@@ -36,11 +37,12 @@ const JobListing = () => {
                const response = await fetch("https://api.weekday.technology/adhoc/getSampleJdJSON", requestOptions) // fetching posts
                const result = await response.json()//
                dispatch(setPosts(result.jdList)) // setting posts
+               dispatch(setOffset(offset + result.jdList.length)); // updating the offset by adding the number of new posts fetched
                dispatch(setIsLoading(false)) // isLoading = false
-
                // checking if there are more posts to fetch
                if (result.length > 0) {
                     dispatch(setHasMorePosts(true))
+
                } else {
                     dispatch(setHasMorePosts(false))
                }
@@ -65,13 +67,19 @@ const JobListing = () => {
                <Grid container gap={5} margin={0} marginBottom={10} direction="row" justifyContent={"center"} alignItems={"center"} className='listing-wrapper' width={"100%"} height={"100%"}>
                     {filteredPosts.map((post, index) => {
                          return (
-                              <Grid key={`${post.jdUid}_${index}`} item >
+                              <Grid key={`${post.jdUid}_${index}`} item ref={ref} >
                                    <JobCard {...post} />
                               </Grid>
                          )
                     })}
                </Grid >
-          </Box>
+               {
+                    isLoading &&
+                    <div className='loading'>
+                         <span className='loader' />
+                    </div>
+               }
+          </Box >
      )
 }
 
